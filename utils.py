@@ -38,7 +38,7 @@ def df_download(coin, interval, lookback):
     try:
         logger.debug(f"📊 Data download for {coin}")
         # load frame for a coin with trade data
-        frame = pd.DataFrame(get_client().get_historical_klines(coin, interval, lookback+'min ago UTC'))
+        frame = pd.DataFrame(get_client().get_historical_klines(coin, interval, lookback+' min ago UTC'))
         if len(frame)>0:
             frame.columns = ['OpenTime', 'Open', 'High', 'Low', 'Close', 'Volume',
                             'CloseTime', 'QuoteAssetVolume', 'NumberOfTrades',
@@ -77,7 +77,7 @@ def asset_list():
         work['priceChangePercent'] = work['priceChangePercent'].astype(float)
         work['symbol'] = work['symbol'].astype(str)
         # add to list only coins with > 5% daily growth
-        work = work[work['priceChangePercent'] > 5]
+        work = work[work['priceChangePercent'] > 3]
         work = work['symbol']
         for ticker in work:
             if ticker[-4:] == 'USDT':
