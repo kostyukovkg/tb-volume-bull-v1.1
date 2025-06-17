@@ -1,0 +1,15 @@
+venv/
+*.pyc
+*.pyo
+*.pyd
+logs/
+*.log
+*.sqlite
+*.db
+.idea/
+*.iml
+.DS_Store
+.logs
+*.xlsx
+*.xls
+.env
