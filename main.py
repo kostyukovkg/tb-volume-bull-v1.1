@@ -1,9 +1,9 @@
 import threading, time
-from strategy import strategy_buy, buy, sell
+from strategy import strategy_buy, buy, sell, portfolio
 from logger_config import logger
 
 
-logger.info('✅ BOT STARTED')
+logger.info(f'✅ BOT STARTED. Current portfolio: {portfolio}')
 
 if __name__ == '__main__':
     # initiate and start 3 threads: 'strategy_buy' runs every hour to check new trading data for coins
