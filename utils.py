@@ -38,7 +38,7 @@ def df_download(coin, interval, lookback):
     try:
         logger.debug(f"📊 Data download for {coin}")
         # load frame for a coin with trade data
-        frame = pd.DataFrame(get_client().get_historical_klines(coin, interval, lookback+' min ago UTC'))
+        frame = pd.DataFrame(get_client().get_historical_klines(coin, interval, limit=lookback))
         if len(frame)>0:
             frame.columns = ['OpenTime', 'Open', 'High', 'Low', 'Close', 'Volume',
                             'CloseTime', 'QuoteAssetVolume', 'NumberOfTrades',

@@ -1,5 +1,6 @@
 import datetime
 import time
+from binance.client import Client
 from utils import asset_list, df_download, trade_to_excel
 import threading
 from logger_config import logger
@@ -23,7 +24,7 @@ def strategy_buy():
                 if asset not in [x['ticker'] for x in portfolio]:
                     logger.debug(f"Check ticker to buy: {asset}")
                     # if not - check if it fits the strategy and must be included into portfolio
-                    df = df_download(asset, '1h', '480')
+                    df = df_download(asset, Client.KLINE_INTERVAL_1HOUR, 8)
                     if df is None or len(df)<6:
                         logger.warning(f'⚠️ Not enough data for {asset}, passed')
                         continue
