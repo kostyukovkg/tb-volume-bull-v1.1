@@ -71,7 +71,7 @@ def buy(buy_amount):
                 if not asset['open']:
                     try:
                         logger.debug(f"Price check to buy {asset}")
-                        df_asset = df_download(asset['ticker'], '1h', '480')
+                        df_asset = df_download(asset['ticker'], Client.KLINE_INTERVAL_1HOUR, 8)
                         if df_asset is None:
                             continue
                         buy_price = round(df_asset['Close'].iloc[-1], 6)
@@ -120,7 +120,7 @@ def sell():
                 if asset['open']:
                     try:
                         logger.debug(f"Price check to sell {asset}")
-                        df_asset = df_download(asset['ticker'], '1h', '480')
+                        df_asset = df_download(asset['ticker'], Client.KLINE_INTERVAL_1HOUR, 8)
                         if df_asset is None:
                             continue
                         current_price = round(df_asset['Close'].iloc[-1], 6)
