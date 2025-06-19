@@ -16,6 +16,7 @@ def strategy_buy():
     """
     while True:
         assets = asset_list()
+        start_time = datetime.datetime.now()
         logger.debug(f"Possible tickers to buy: {assets}")
         logger.info(f"ℹ️ Number of possible tickers to buy: {len(assets)}")
         with portfolio_lock:
@@ -55,7 +56,9 @@ def strategy_buy():
                         logger.error(f"❗Error to buy {asset['ticker']: {e}}", exc_info=True)
                         continue
         logger.info(f"ℹ️ Current portfolio: {portfolio}")
-        time.sleep(3600)
+        end_time = datetime.datetime.now()
+        diff_time = (end_time-start_time).total_seconds()
+        time.sleep(3600-diff_time)
 
 
 def buy(buy_amount):
