@@ -55,7 +55,6 @@ def df_download(coin, interval, lookback):
         logger.error(f"❗ Error download data for {coin}: {e}")
         return None
 
-
 def asset_list():
     """
     Gets a list of coins that are traded only to USDT and have grown by more than X% over the past day

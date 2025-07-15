@@ -21,8 +21,13 @@ def strategy_buy():
         logger.info(f"ℹ️ Number of possible tickers to buy: {len(assets)}")
         with portfolio_lock:
             for asset in assets:
-                # check if asset is already in portfolio
-                if asset not in [x['ticker'] for x in portfolio]:
+                # check volume
+                df = df_download(asset, Client.KLINE_INTERVAL_1HOUR, 720)
+                df['Mid'] = (df['High'] + df['Low'] + df['Close']) / 3
+                df['Value'] = df['Mid'] * df['Volume']
+                df_mean_value = df['Value'].mean()
+                # check if asset is already in portfolio and mean_value > 100000
+                if asset not in [x['ticker'] for x in portfolio] and df_mean_value > 100000:
                     logger.debug(f"Check ticker to buy: {asset}")
                     # if not - check if it fits the strategy and must be included into portfolio
                     df = df_download(asset, Client.KLINE_INTERVAL_1HOUR, 8)

@@ -6,6 +6,7 @@ Implements asset filtering, buying, and selling based on defined rules by perfor
 >⚠️ Important Notice : This bot currently does not perform real trades on the exchange. 
 It simulates trading decisions and logs imaginary deals based on market data. 
 It is intended for testing, learning, and strategy development.
+
 ---
 
 ## 🧠 Description
