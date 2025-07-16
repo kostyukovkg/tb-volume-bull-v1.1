@@ -37,11 +37,11 @@ def strategy_buy():
                     try:
                         # strategy criteria
                         mean_volume = round(df['Volume'][:6].mean(), 4)
-                        if df['Volume'].iloc[-2] > 3 * mean_volume and \
+                        if df['Volume'].iloc[-2] > 4 * mean_volume and \
                             df['Volume'].iloc[-2] > 2 * df['Volume'].iloc[-3] and \
-                            df['Volume'].iloc[-2] > 2 * df['Volume'].iloc[-4] and \
+                            df['Volume'].iloc[-3] > 2 * df['Volume'].iloc[-4] and \
                             df['Close'].iloc[-2] > df['Close'].iloc[-3] and \
-                            df['Close'].iloc[-2] > df['Close'].iloc[-4]:
+                            df['Close'].iloc[-3] > df['Close'].iloc[-4]:
                             new_asset = {
                                 'ticker':asset,
                                 'qty':float(),
