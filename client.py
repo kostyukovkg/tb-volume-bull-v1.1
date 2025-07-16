@@ -1,3 +1,5 @@
+import time
+
 from binance.client import Client
 from logger_config import logger
 import os
@@ -12,6 +14,8 @@ def get_client():
         api_secret = os.getenv("MY_PASS")
         client = Client(api_key, api_secret)
         logger.debug("Client Binance initiated")
+        return client
     except Exception as e:
         logger.critical(f"❗Error to create Binance client: {e}", exc_info=True)
-    return client
+        time.sleep(10)
+        get_client()
