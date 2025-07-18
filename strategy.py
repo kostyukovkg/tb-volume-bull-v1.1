@@ -56,7 +56,7 @@ def strategy_buy():
                             portfolio.append(new_asset)
                             logger.info(f"📥 ADD new asset {asset}")
                         else:
-                            logger.info(f"{asset} does not fit strategy criteria to buy")
+                            logger.debug(f"{asset} does not fit strategy criteria to buy")
                     except IndexError as e:
                         logger.error(f"❗Error to buy {asset['ticker']: {e}}", exc_info=True)
                         continue

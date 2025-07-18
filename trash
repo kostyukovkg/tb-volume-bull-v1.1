@@ -1,0 +1,76 @@
+def write_to_file(data_to_write):
+    with open('trade_logs.txt', 'a') as f:
+        f.write(f'{datetime.datetime.now()}\n')
+        f.write(f'{data_to_write}\n')
+-------------------------------------------------------------------------------
+import logging
+import os
+from colorlog import ColoredFormatter
+
+# Создаем папку для логов
+os.makedirs('logs', exist_ok=True)
+
+# Цветной форматтер
+formatter = ColoredFormatter(
+    "%(asctime)s - %(log_color)s%(levelname)s%(reset)s - %(blue)s[%(module)s]%(reset)s %(message)s",
+    datefmt='%Y-%m-%d %H:%M:%S',
+    log_colors={
+        'DEBUG':    'cyan',
+        'INFO':     'green',
+        'WARNING':  'yellow',
+        'ERROR':    'red',
+        'CRITICAL': 'bold_red',
+    }
+)
+
+# Хендлер для вывода в консоль
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.DEBUG)
+console_handler.setFormatter(formatter)
+
+# Хендлер для записи в файл (без цветов)
+file_formatter = logging.Formatter('%(asctime)s - %(levelname)s - [%(module)s] %(message)s')
+file_handler = logging.FileHandler('logs/bot.log')
+file_handler.setLevel(logging.DEBUG)
+file_handler.setFormatter(file_formatter)
+
+# Основной логгер
+logger = logging.getLogger()
+logger.setLevel(logging.DEBUG)
+logger.addHandler(console_handler)
+logger.addHandler(file_handler)
+
+
+---
+
+🚀 **Automated Cryptocurrency Trading Bot – Now Live on PythonAnywhere!**
+
+I'm excited to share my latest project: an **automated trading bot** for the **Binance** exchange, now running 24/7 on a remote server using **PythonAnywhere**.
+
+🔍 **Overview**:
+This bot implements a volume breakout strategy to identify promising crypto assets traded against USDT. It filters coins by price change and volume growth, then simulates trades based on defined rules — all in real-time and fully automated.
+
+🔧 **Key Technical Features**:
+- Multithreaded architecture for parallel execution of asset filtering, buying, and selling checks
+- Real-time market data fetching via **Binance API**
+- Thread-safe portfolio and trade logging using `threading.Lock`
+- Trade history stored in Excel (`trades.xlsx`) with conflict-free writes
+- Environment variables managed via `.env` for secure credential handling
+- Built-in logging and error handling for robustness
+- Runs autonomously on **PythonAnywhere**, no manual intervention required
+
+🤖 The bot currently **simulates trading decisions** (no real funds involved) and is focused on testing and refining strategy logic. I’ll be sharing performance results and insights after one month of live operation.
+
+📈 **What’s next?**
+I’m now working on a new version — this time using the **MACD indicator** for smarter trade entries and exits.
+
+📚 A special thanks to **QwenAI**, which served as an incredible mentor throughout this journey. As a beginner programmer, I relied heavily on its guidance to understand threading, logging, deployment, and Git best practices. Without QwenAI, this project would have taken me much longer — or might not have happened at all!
+
+🔗 Project source code is available on GitHub:
+https://github.com/kostyukovkg/tb-volume-bull-v1.1
+
+💬 I'd love to hear your feedback or suggestions — feel free to comment or share this post. Thank you for following along!
+
+#TradingBot #AlgorithmicTrading #Python #Binance #CryptoTrading #GitHub #Automation #Fintech #QuantitativeAnalysis #PythonAnywhere #OpenSource #QwenAI #BeginnerProgrammer #MentorshipInTech
+
+---
